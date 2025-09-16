@@ -25,7 +25,7 @@
 
 // nbQHeads / nbKHeads for MQA/GQA
 #ifndef HEAD_GRP_SIZE
-#define HEAD_GRP_SIZE 8
+#define HEAD_GRP_SIZE 16
 #endif
 
 #define IS_MLA (HEAD_GRP_SIZE == 128 && HEAD_ELEMS == 576)

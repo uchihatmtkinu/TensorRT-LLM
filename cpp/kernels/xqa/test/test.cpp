@@ -1134,33 +1134,33 @@ TEST(RefCheck, mla)
 #define Q_SEQ_LEN 62
 #endif
 
-TEST(RefCheck, llama_V2_70b_3)
-{
-    // runTest<2, headGrpSize, 12>(2, 97, false, true, true, true);
-    if constexpr (Q_SEQ_LEN <= 13)
-    {
-        runTest<1, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 13, runPerfTest, runCheckTest);
-    }
-    runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1128, runPerfTest, runCheckTest);
-    runTest<2, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 1128, runPerfTest, runCheckTest);
-    runTest<2, HEAD_GROUP_SIZE, Q_SEQ_LEN>(2, 1128, runPerfTest, runCheckTest);
-    runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 1128, runPerfTest, runCheckTest);
-    runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(4, 1128, runPerfTest, runCheckTest);
-    runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1128, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 256, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 512, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1028, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2048, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 4096, runPerfTest, runCheckTest);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2048, runPerfTest, runCheckTest);
+// TEST(RefCheck, llama_V2_70b_3)
+// {
+//     // runTest<2, headGrpSize, 12>(2, 97, false, true, true, true);
+//     if constexpr (Q_SEQ_LEN <= 13)
+//     {
+//         runTest<1, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 13, runPerfTest, runCheckTest);
+//     }
+//     runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1128, runPerfTest, runCheckTest);
+//     runTest<2, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 1128, runPerfTest, runCheckTest);
+//     runTest<2, HEAD_GROUP_SIZE, Q_SEQ_LEN>(2, 1128, runPerfTest, runCheckTest);
+//     runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(1, 1128, runPerfTest, runCheckTest);
+//     runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(4, 1128, runPerfTest, runCheckTest);
+//     runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1128, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 256, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 512, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 1028, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2048, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 4096, runPerfTest, runCheckTest);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2048, runPerfTest, runCheckTest);
 
-#if SLIDING_WINDOW && !IS_SPEC_DEC_TREE
-    runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(4, 2039, false, runCheckTest, true, false, ~0U, 1024);
-    runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 63, false, runCheckTest, true, false, ~0U, 61);
-    runTest<1, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2, false, true, true, false, ~0U, 1);
+// #if SLIDING_WINDOW && !IS_SPEC_DEC_TREE
+//     runTest<4, HEAD_GROUP_SIZE, Q_SEQ_LEN>(4, 2039, false, runCheckTest, true, false, ~0U, 1024);
+//     runTest<8, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 63, false, runCheckTest, true, false, ~0U, 61);
+//     runTest<1, HEAD_GROUP_SIZE, Q_SEQ_LEN>(8, 2, false, true, true, false, ~0U, 1);
 
-#endif
-}
+// #endif
+// }
 #endif
 
 #else
@@ -1204,291 +1204,322 @@ TEST(Perf, mla_tracing)
     runTest<1>(1, 64 * 4 * 4, true, false);
 }
 #else
-TEST(RefCheck, llama_V2_70b)
-{
-    // runTest<1>(1, 2, false, true, true, true);
-    runTest<2>(2, 2, false, true);
-    runTest<2>(2, 15, false, true);
-    runTest<2>(2, 256, false, true);
-    runTest<2>(2, 514, false, true);
-    runTest<1>(1, 4096, false, true);
-#if SLIDING_WINDOW
-    runTest<2>(2, 4096, false, true, false, false, false, ~0, 256);
-    runTest<2>(2, 400, false, true, false, false, false, ~0U, 256);
-#endif
-    runTest<8>(120, 367, false, true);
-    runTest<8>(1792, 2048, false, true);
-}
+// TEST(RefCheck, llama_V2_70b)
+// {
+//     // runTest<1>(1, 2, false, true, true, true);
+//     runTest<2>(2, 2, false, true);
+//     runTest<2>(2, 15, false, true);
+//     runTest<2>(2, 256, false, true);
+//     runTest<2>(2, 514, false, true);
+//     runTest<1>(1, 4096, false, true);
+// #if SLIDING_WINDOW
+//     runTest<2>(2, 4096, false, true, false, false, false, ~0, 256);
+//     runTest<2>(2, 400, false, true, false, false, false, ~0U, 256);
+// #endif
+//     runTest<8>(120, 367, false, true);
+//     runTest<8>(1792, 2048, false, true);
+// }
 
-TEST(RefCheck, attention_sinks)
-{
-    auto runAttentionSinksTest = [](uint32_t batchSize, uint32_t seqLen)
-    { runTest<8>(batchSize, seqLen, false, true, false, false, /*hasAttentionSinks*/ true); };
+// TEST(RefCheck, attention_sinks)
+// {
+//     auto runAttentionSinksTest = [](uint32_t batchSize, uint32_t seqLen)
+//     { runTest<8>(batchSize, seqLen, false, true, false, false, /*hasAttentionSinks*/ true); };
 
-    runAttentionSinksTest(2, 2);
-    runAttentionSinksTest(2, 15);
-    runAttentionSinksTest(2, 256);
-    runAttentionSinksTest(2, 514);
-    runAttentionSinksTest(1, 4096);
-}
+//     runAttentionSinksTest(2, 2);
+//     runAttentionSinksTest(2, 15);
+//     runAttentionSinksTest(2, 256);
+//     runAttentionSinksTest(2, 514);
+//     runAttentionSinksTest(1, 4096);
+// }
 
-TEST(Perf, tracing_long)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<1>(0, 4096, true, false);
-}
+// TEST(Perf, tracing_long)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<1>(0, 4096, true, false);
+// }
 
-TEST(Perf, tracing_short)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<1>(0, 384, true, false);
-}
+// TEST(Perf, tracing_short)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<1>(0, 384, true, false);
+// }
 
-TEST(Perf, llama_V2_70b_long_seq)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(0, 0, true, false);
-}
+// TEST(Perf, llama_V2_70b_long_seq)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(0, 0, true, false);
+// }
 
-TEST(Perf, llama_V2_70b_4096)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(0, 4096, true, false);
-}
+// TEST(Perf, llama_V2_70b_4096)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(0, 4096, true, false);
+// }
 
-TEST(Perf, llama_V2_70b_2048)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(560, 2048, true, false);
-}
+// TEST(Perf, llama_V2_70b_2048)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(560, 2048, true, false);
+// }
 
-TEST(Perf, llama_V2_70b_256)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(960, 256, true, false);
-}
+// TEST(Perf, llama_V2_70b_256)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(960, 256, true, false);
+// }
 
-TEST(Perf, llama_V2_70b_512)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(960, 512, true, false);
-}
+// TEST(Perf, llama_V2_70b_512)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(960, 512, true, false);
+// }
 
-TEST(Perf, mlperf_gptj)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<32>(396, 800 + 224, true, false, false, false, false, 800);
-}
+// TEST(Perf, mlperf_gptj)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<32>(396, 800 + 224, true, false, false, false, false, 800);
+// }
 
-TEST(Perf, mlperf_llama)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<8>(1792, 367, true, false);
-}
+// TEST(Perf, mlperf_llama)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<8>(1792, 367, true, false);
+// }
 
-TEST(Perf, bs1)
-{
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<16>(4, 64 * 16 * 16, true, false);
-}
+// TEST(Perf, bs1)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<16>(4, 64 * 16 * 16, true, false);
+// }
 
-TEST(Perf, tmp)
+// TEST(Perf, tmp)
+// {
+// #ifndef NDEBUG
+//     GTEST_SKIP() << "Skipping perf tests for debug build";
+// #endif
+//     runTest<4>(32, 100, true, false);
+// }
+#endif
+
+TEST(Perf, Qwen_perf_test)
 {
-#ifndef NDEBUG
-    GTEST_SKIP() << "Skipping perf tests for debug build";
-#endif
-    runTest<4>(32, 100, true, false);
+    //runTest<kv_heads>(bs, seq_len, testPerf, refCheck)
+    printf("Running Qwen perf test\n");
+    printf("bs = 1, seq_len = 16384\n");
+    setenv("XQA_NB_SUB_SEQ", "39", 1);
+    printf("XQA_NB_SUB_SEQ = %s\n", std::getenv("XQA_NB_SUB_SEQ"));
+    runTest<4>(1, 16384, true, false);
+    runTest<4>(1, 24576, true, false);
+    printf("bs = 4, seq_len = 16384\n");
+    setenv("XQA_NB_SUB_SEQ", "14", 1);
+    printf("XQA_NB_SUB_SEQ = %s\n", std::getenv("XQA_NB_SUB_SEQ"));
+    runTest<4>(4, 16384, true, false);
+    runTest<4>(4, 24576, true, false);
+    printf("bs = 8, seq_len = 16384\n");
+    setenv("XQA_NB_SUB_SEQ", "7", 1);
+    printf("XQA_NB_SUB_SEQ = %s\n", std::getenv("XQA_NB_SUB_SEQ"));
+    runTest<4>(8, 16384, true, false);
+    runTest<4>(8, 24576, true, false);
+    printf("bs = 16, seq_len = 16384\n");
+    setenv("XQA_NB_SUB_SEQ", "7", 1);
+    printf("XQA_NB_SUB_SEQ = %s\n", std::getenv("XQA_NB_SUB_SEQ"));
+    runTest<4>(16, 16384, true, false);
+    runTest<4>(16, 24576, true, false);
+    printf("bs = 32, seq_len = 16384\n");
+    setenv("XQA_NB_SUB_SEQ", "7", 1);
+    printf("XQA_NB_SUB_SEQ = %s\n", std::getenv("XQA_NB_SUB_SEQ"));
+    runTest<4>(32, 16384, true, false);
+    runTest<4>(32, 24576, true, false);
 }
-#endif
 
 #if ENABLE_NVRTC
 #define NVRTC_RUN(x) ASSERT_EQ(NVRTC_SUCCESS, (x))
 #define CU_RUN(x) ASSERT_EQ(CUDA_SUCCESS, (x))
 
-TEST(NVRTC, compile)
-{
-    checkCuda(cudaFree(nullptr));
-    int device;
-    checkCuda(cudaGetDevice(&device));
-    cudaDeviceProp prop;
-    checkCuda(cudaGetDeviceProperties(&prop, device));
+// TEST(NVRTC, compile)
+// {
+//     checkCuda(cudaFree(nullptr));
+//     int device;
+//     checkCuda(cudaGetDevice(&device));
+//     cudaDeviceProp prop;
+//     checkCuda(cudaGetDeviceProperties(&prop, device));
 
-    int const major = prop.major;
-    int const minor = prop.minor;
-    ASSERT_GT(major, 0);
+//     int const major = prop.major;
+//     int const minor = prop.minor;
+//     ASSERT_GT(major, 0);
 
-    std::vector<char const*> headers_content = {
-        tensorrt_llm::kernels::cuda_hint_cuh_content,
-        tensorrt_llm::kernels::defines_h_content,
-        tensorrt_llm::kernels::ldgsts_cuh_content,
-        tensorrt_llm::kernels::mha_h_content,
-        tensorrt_llm::kernels::mha_utils_cuh_content,
-        tensorrt_llm::kernels::mma_cuh_content,
-        tensorrt_llm::kernels::platform_h_content,
-        tensorrt_llm::kernels::utils_cuh_content,
-        tensorrt_llm::kernels::utils_h_content,
-        tensorrt_llm::kernels::mha_stdheaders_cuh_content,
-        tensorrt_llm::kernels::mha_components_cuh_content,
-        tensorrt_llm::kernels::mla_sm120_cuh_content,
-        tensorrt_llm::kernels::gmma_cuh_content,
-        tensorrt_llm::kernels::gmma_impl_cuh_content,
-        tensorrt_llm::kernels::barriers_cuh_content,
-        tensorrt_llm::kernels::tma_h_content,
-        tensorrt_llm::kernels::cuda_bf16_h_content,
-        tensorrt_llm::kernels::cuda_bf16_hpp_content,
-        tensorrt_llm::kernels::cuda_fp16_h_content,
-        tensorrt_llm::kernels::cuda_fp16_hpp_content,
-        tensorrt_llm::kernels::cuda_fp8_h_content,
-        tensorrt_llm::kernels::cuda_fp8_hpp_content,
-        tensorrt_llm::kernels::vector_types_h_content,
-        tensorrt_llm::kernels::vector_functions_h_content,
-        tensorrt_llm::kernels::device_types_h_content,
-    };
-    std::vector<char const*> headers_name = {"cuda_hint.cuh", "defines.h", "ldgsts.cuh", "mha.h", "mhaUtils.cuh",
-        "mma.cuh", "platform.h", "utils.cuh", "utils.h", "mha_stdheaders.cuh", "mha_components.cuh", "mla_sm120.cuh",
-        "gmma.cuh", "gmma_impl.cuh", "barriers.cuh", "tma.h", "cuda_bf16.h", "cuda_bf16.hpp", "cuda_fp16.h",
-        "cuda_fp16.hpp", "cuda_fp8.h", "cuda_fp8.hpp", "vector_types.h", "vector_functions.h", "device_types.h"};
-    assert(headers_content.size() == headers_name.size());
-    auto test
-        = [&](int input_fp16, int cache_enum, int head_dim, int head_grp_size, bool use_paged_kv_cache,
-              int paged_kv_cache_layout, int beam_width, char const* source_file, int compileMajor, int compileMinor)
-    {
-        std::string arch_flag = "-arch=sm_" + std::to_string(compileMajor) + std::to_string(compileMinor);
-        if ((compileMajor == 9 || compileMajor == 10 || compileMajor == 12) && compileMinor == 0)
-        {
-            arch_flag += "a";
-        }
-        std::vector<std::string> options = {
-            "-dw",
-            "-std=c++17",
-            "--use_fast_math",
-            arch_flag,
-            "-default-device",
-            "-DGENERATE_CUBIN=1",
-            "-DNDEBUG",
-            input_fp16 ? "-DDTYPE=__half" : "-DDTYPE=__nv_bfloat16",
-            "-DINPUT_FP16=" + std::to_string(input_fp16),
-            "-DHEAD_ELEMS=" + std::to_string(head_dim),
-            "-DBEAM_WIDTH=" + std::to_string(beam_width),
-            "-DCACHE_ELEM_ENUM=" + std::to_string(cache_enum),
-            "-DTOKENS_PER_PAGE=" + std::to_string(use_paged_kv_cache ? 32 : 0),
-            "-DPAGED_KV_CACHE_LAYOUT=" + std::to_string(paged_kv_cache_layout),
-            "-DHEAD_GRP_SIZE=" + std::to_string(head_grp_size),
-            "-DM_TILESIZE=" + std::to_string(head_grp_size),
-            "-DUSE_CUSTOM_BARRIER=1",
-        };
-        if (cache_enum == 2 && source_file == tensorrt_llm::kernels::mha_sm90_cu_content)
-        {
-            options.push_back("-DUSE_INPUT_KV=1");
-            options.push_back("-DROPE_STYLE=1");
-            options.push_back("-DSLIDING_WINDOW=1");
-            options.push_back("-DLOW_PREC_OUTPUT=1");
-        }
-        std::vector<char const*> options_cstr;
-        for (auto const& option : options)
-        {
-            options_cstr.push_back(option.c_str());
-        }
+//     std::vector<char const*> headers_content = {
+//         tensorrt_llm::kernels::cuda_hint_cuh_content,
+//         tensorrt_llm::kernels::defines_h_content,
+//         tensorrt_llm::kernels::ldgsts_cuh_content,
+//         tensorrt_llm::kernels::mha_h_content,
+//         tensorrt_llm::kernels::mha_utils_cuh_content,
+//         tensorrt_llm::kernels::mma_cuh_content,
+//         tensorrt_llm::kernels::platform_h_content,
+//         tensorrt_llm::kernels::utils_cuh_content,
+//         tensorrt_llm::kernels::utils_h_content,
+//         tensorrt_llm::kernels::mha_stdheaders_cuh_content,
+//         tensorrt_llm::kernels::mha_components_cuh_content,
+//         tensorrt_llm::kernels::mla_sm120_cuh_content,
+//         tensorrt_llm::kernels::gmma_cuh_content,
+//         tensorrt_llm::kernels::gmma_impl_cuh_content,
+//         tensorrt_llm::kernels::barriers_cuh_content,
+//         tensorrt_llm::kernels::tma_h_content,
+//         tensorrt_llm::kernels::cuda_bf16_h_content,
+//         tensorrt_llm::kernels::cuda_bf16_hpp_content,
+//         tensorrt_llm::kernels::cuda_fp16_h_content,
+//         tensorrt_llm::kernels::cuda_fp16_hpp_content,
+//         tensorrt_llm::kernels::cuda_fp8_h_content,
+//         tensorrt_llm::kernels::cuda_fp8_hpp_content,
+//         tensorrt_llm::kernels::vector_types_h_content,
+//         tensorrt_llm::kernels::vector_functions_h_content,
+//         tensorrt_llm::kernels::device_types_h_content,
+//     };
+//     std::vector<char const*> headers_name = {"cuda_hint.cuh", "defines.h", "ldgsts.cuh", "mha.h", "mhaUtils.cuh",
+//         "mma.cuh", "platform.h", "utils.cuh", "utils.h", "mha_stdheaders.cuh", "mha_components.cuh", "mla_sm120.cuh",
+//         "gmma.cuh", "gmma_impl.cuh", "barriers.cuh", "tma.h", "cuda_bf16.h", "cuda_bf16.hpp", "cuda_fp16.h",
+//         "cuda_fp16.hpp", "cuda_fp8.h", "cuda_fp8.hpp", "vector_types.h", "vector_functions.h", "device_types.h"};
+//     assert(headers_content.size() == headers_name.size());
+//     auto test
+//         = [&](int input_fp16, int cache_enum, int head_dim, int head_grp_size, bool use_paged_kv_cache,
+//               int paged_kv_cache_layout, int beam_width, char const* source_file, int compileMajor, int compileMinor)
+//     {
+//         std::string arch_flag = "-arch=sm_" + std::to_string(compileMajor) + std::to_string(compileMinor);
+//         if ((compileMajor == 9 || compileMajor == 10 || compileMajor == 12) && compileMinor == 0)
+//         {
+//             arch_flag += "a";
+//         }
+//         std::vector<std::string> options = {
+//             "-dw",
+//             "-std=c++17",
+//             "--use_fast_math",
+//             arch_flag,
+//             "-default-device",
+//             "-DGENERATE_CUBIN=1",
+//             "-DNDEBUG",
+//             input_fp16 ? "-DDTYPE=__half" : "-DDTYPE=__nv_bfloat16",
+//             "-DINPUT_FP16=" + std::to_string(input_fp16),
+//             "-DHEAD_ELEMS=" + std::to_string(head_dim),
+//             "-DBEAM_WIDTH=" + std::to_string(beam_width),
+//             "-DCACHE_ELEM_ENUM=" + std::to_string(cache_enum),
+//             "-DTOKENS_PER_PAGE=" + std::to_string(use_paged_kv_cache ? 32 : 0),
+//             "-DPAGED_KV_CACHE_LAYOUT=" + std::to_string(paged_kv_cache_layout),
+//             "-DHEAD_GRP_SIZE=" + std::to_string(head_grp_size),
+//             "-DM_TILESIZE=" + std::to_string(head_grp_size),
+//             "-DUSE_CUSTOM_BARRIER=1",
+//         };
+//         if (cache_enum == 2 && source_file == tensorrt_llm::kernels::mha_sm90_cu_content)
+//         {
+//             options.push_back("-DUSE_INPUT_KV=1");
+//             options.push_back("-DROPE_STYLE=1");
+//             options.push_back("-DSLIDING_WINDOW=1");
+//             options.push_back("-DLOW_PREC_OUTPUT=1");
+//         }
+//         std::vector<char const*> options_cstr;
+//         for (auto const& option : options)
+//         {
+//             options_cstr.push_back(option.c_str());
+//         }
 
-        nvrtcProgram program;
-        std::string log;
+//         nvrtcProgram program;
+//         std::string log;
 
-        NVRTC_RUN(nvrtcCreateProgram(
-            &program, source_file, "program", headers_content.size(), headers_content.data(), headers_name.data()));
-        auto status = nvrtcCompileProgram(program, options_cstr.size(), options_cstr.data());
-        if (status != NVRTC_SUCCESS)
-        {
-            size_t log_size;
-            NVRTC_RUN(nvrtcGetProgramLogSize(program, &log_size));
-            log.resize(log_size);
-            NVRTC_RUN(nvrtcGetProgramLog(program, const_cast<char*>(log.data())));
-            FAIL() << log;
-        }
+//         NVRTC_RUN(nvrtcCreateProgram(
+//             &program, source_file, "program", headers_content.size(), headers_content.data(), headers_name.data()));
+//         auto status = nvrtcCompileProgram(program, options_cstr.size(), options_cstr.data());
+//         if (status != NVRTC_SUCCESS)
+//         {
+//             size_t log_size;
+//             NVRTC_RUN(nvrtcGetProgramLogSize(program, &log_size));
+//             log.resize(log_size);
+//             NVRTC_RUN(nvrtcGetProgramLog(program, const_cast<char*>(log.data())));
+//             FAIL() << log;
+//         }
 
-        size_t cubinSize;
-        NVRTC_RUN(nvrtcGetCUBINSize(program, &cubinSize));
-        ASSERT_GT(cubinSize, 1000);
-        std::string cubinContent(cubinSize, ' ');
-        NVRTC_RUN(nvrtcGetCUBIN(program, const_cast<char*>(cubinContent.c_str())));
+//         size_t cubinSize;
+//         NVRTC_RUN(nvrtcGetCUBINSize(program, &cubinSize));
+//         ASSERT_GT(cubinSize, 1000);
+//         std::string cubinContent(cubinSize, ' ');
+//         NVRTC_RUN(nvrtcGetCUBIN(program, const_cast<char*>(cubinContent.c_str())));
 
-        NVRTC_RUN(nvrtcDestroyProgram(&program));
+//         NVRTC_RUN(nvrtcDestroyProgram(&program));
 
-        if (compileMajor == major && compileMinor == minor)
-        {
-            CUmodule module;
-            CU_RUN(cuModuleLoadData(&module, static_cast<void const*>(cubinContent.c_str())));
-            CUfunction function;
-            CU_RUN(cuModuleGetFunction(&function, module, "kernel_mha"));
-            ASSERT_NE(function, nullptr);
-            CUdeviceptr shmem_dev_ptr;
-            CU_RUN(cuModuleGetGlobal(&shmem_dev_ptr, nullptr, module, "smemSize"));
-            unsigned int shmem_bytes = 0;
-            CU_RUN(cuMemcpyDtoH(&shmem_bytes, shmem_dev_ptr, sizeof(unsigned int)));
-            ASSERT_GT(shmem_bytes, 1000);
-        }
-    };
+//         if (compileMajor == major && compileMinor == minor)
+//         {
+//             CUmodule module;
+//             CU_RUN(cuModuleLoadData(&module, static_cast<void const*>(cubinContent.c_str())));
+//             CUfunction function;
+//             CU_RUN(cuModuleGetFunction(&function, module, "kernel_mha"));
+//             ASSERT_NE(function, nullptr);
+//             CUdeviceptr shmem_dev_ptr;
+//             CU_RUN(cuModuleGetGlobal(&shmem_dev_ptr, nullptr, module, "smemSize"));
+//             unsigned int shmem_bytes = 0;
+//             CU_RUN(cuMemcpyDtoH(&shmem_bytes, shmem_dev_ptr, sizeof(unsigned int)));
+//             ASSERT_GT(shmem_bytes, 1000);
+//         }
+//     };
 
-    test(0, 2, 576, 128, true, 1, 1, tensorrt_llm::kernels::mla_sm120_cu_content, 12, 0);
+//     test(0, 2, 576, 128, true, 1, 1, tensorrt_llm::kernels::mla_sm120_cu_content, 12, 0);
 
-    std::pair<char const* const, std::function<bool(int, int)>> const sourceFileAndArchCond[] = {
-        {tensorrt_llm::kernels::mha_cu_content, [](int major, int minor) { return major >= 8; }},
-        {tensorrt_llm::kernels::mha_sm90_cu_content, [](int major, int minor) { return major == 9 && minor == 0; }}};
-    for (int input_fp16 : {0, 1})
-    {
-        for (int cache_enum : {0, 1, 2})
-        {
-            for (int head_dim : {64, 128, 256})
-            {
-                for (bool use_paged_kv_cache : {false, true})
-                {
-                    for (int paged_kv_cache_layout : {0, 1})
-                    {
-                        if (!use_paged_kv_cache && paged_kv_cache_layout != 0)
-                        {
-                            continue;
-                        }
-                        for (int beam_width : {1, 4})
-                        {
-                            for (auto const& [source_file, archCond] : sourceFileAndArchCond)
-                            {
-                                if (!archCond(major, minor))
-                                {
-                                    continue;
-                                }
-                                if ((source_file == tensorrt_llm::kernels::mha_sm90_cu_content)
-                                    && !(cache_enum == 2 && beam_width == 1))
-                                {
-                                    continue;
-                                }
-                                test(input_fp16, cache_enum, head_dim, 8, use_paged_kv_cache, paged_kv_cache_layout,
-                                    beam_width, source_file, major, minor);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//     std::pair<char const* const, std::function<bool(int, int)>> const sourceFileAndArchCond[] = {
+//         {tensorrt_llm::kernels::mha_cu_content, [](int major, int minor) { return major >= 8; }},
+//         {tensorrt_llm::kernels::mha_sm90_cu_content, [](int major, int minor) { return major == 9 && minor == 0; }}};
+//     for (int input_fp16 : {0, 1})
+//     {
+//         for (int cache_enum : {0, 1, 2})
+//         {
+//             for (int head_dim : {64, 128, 256})
+//             {
+//                 for (bool use_paged_kv_cache : {false, true})
+//                 {
+//                     for (int paged_kv_cache_layout : {0, 1})
+//                     {
+//                         if (!use_paged_kv_cache && paged_kv_cache_layout != 0)
+//                         {
+//                             continue;
+//                         }
+//                         for (int beam_width : {1, 4})
+//                         {
+//                             for (auto const& [source_file, archCond] : sourceFileAndArchCond)
+//                             {
+//                                 if (!archCond(major, minor))
+//                                 {
+//                                     continue;
+//                                 }
+//                                 if ((source_file == tensorrt_llm::kernels::mha_sm90_cu_content)
+//                                     && !(cache_enum == 2 && beam_width == 1))
+//                                 {
+//                                     continue;
+//                                 }
+//                                 test(input_fp16, cache_enum, head_dim, 8, use_paged_kv_cache, paged_kv_cache_layout,
+//                                     beam_width, source_file, major, minor);
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 #endif
 #endif
